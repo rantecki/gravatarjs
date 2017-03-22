@@ -13,7 +13,8 @@ function gravatar(email, options) {
 		size: options.size || "50",
 		rating: options.rating || "g",
 		secure: options.secure || (location.protocol === 'https:'),
-		backup: options.backup || ""
+		backup: options.backup || "",
+		forceBackup: options.forceBackup || ""
 	};
 
 	//setup the email address
@@ -26,6 +27,7 @@ function gravatar(email, options) {
 	if (options.rating) {params.push("r=" + options.rating)};
 	if (options.backup) {params.push("d=" + encodeURIComponent(options.backup))};
 	if (options.size) {params.push("s=" + options.size)};
+	if (options.forceBackup) {params.push("f=" + (!!options.forceBackup ? "y" : "n" ))};
 
 	//now throw it all together
 	return base + md5(email) + "?" + params.join("&");
